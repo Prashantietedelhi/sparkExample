@@ -1,0 +1,50 @@
+createtab_stmt
+CREATE TABLE `edge.profiles`(
+  `primary_key` string COMMENT 'PrimaryKey without the source and provider', 
+  `sources` string COMMENT 'Set<CandidateSource>', 
+  `ids` string COMMENT 'CandidateSourceIdentifier', 
+  `timestamps` string COMMENT 'Timestamps', 
+  `metadata` string COMMENT 'ProfileMetadata', 
+  `names` string COMMENT 'List<Name>', 
+  `locations` string COMMENT 'ProfileLocations', 
+  `educations` string COMMENT 'List<CandidateEducation>', 
+  `employments` string COMMENT 'List<CandidateEmployment>', 
+  `industries` string COMMENT 'Set<String>', 
+  `onetcodes` string COMMENT 'SortedSet<ONetCode>', 
+  `skills` string COMMENT 'MergeHashSet<CandidateSkill,SkillAggregation>', 
+  `phones` string COMMENT 'Set<String>', 
+  `spoken_languages` string COMMENT 'Set<SpokenLanguage>', 
+  `photos` string COMMENT 'Set<String>', 
+  `about` string COMMENT 'Set<String>', 
+  `websites` string COMMENT 'Set<String>', 
+  `awards` string COMMENT 'List<CandidateAward>', 
+  `certifications` string COMMENT 'List<CandidateCertification>', 
+  `memberships` string COMMENT 'List<CandidateMembership>', 
+  `publications` string COMMENT 'List<CandidatePublication>', 
+  `custom_properties` string COMMENT 'CustomProperties')
+PARTITIONED BY ( 
+  `source` string COMMENT 'CandidateSource that is NOT CandidateSource.INTERNAL', 
+  `provider` string COMMENT 'CandidateProvider', 
+  `version` string COMMENT 'The soure-modified timestamp')
+ROW FORMAT SERDE 
+  'org.apache.hadoop.hive.ql.io.parquet.serde.ParquetHiveSerDe' 
+WITH SERDEPROPERTIES ( 
+  'field.delim'='\u0001', 
+  'serialization.format'='\u0001') 
+STORED AS INPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.parquet.MapredParquetInputFormat' 
+OUTPUTFORMAT 
+  'org.apache.hadoop.hive.ql.io.parquet.MapredParquetOutputFormat'
+LOCATION
+  'hdfs://qtmhdfs:8020/user/hive/warehouse/edge.db/profiles'
+TBLPROPERTIES (
+  'last_modified_by'='hive', 
+  'last_modified_time'='1636404488', 
+  'spark.sql.create.version'='2.2 or prior', 
+  'spark.sql.sources.schema.numPartCols'='3', 
+  'spark.sql.sources.schema.numParts'='1', 
+  'spark.sql.sources.schema.part.0'='{\"type\":\"struct\",\"fields\":[{\"name\":\"primary_key\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"PrimaryKey without the source and provider\"}},{\"name\":\"sources\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"Set<CandidateSource>\"}},{\"name\":\"ids\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"CandidateSourceIdentifier\"}},{\"name\":\"timestamps\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"Timestamps\"}},{\"name\":\"metadata\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"ProfileMetadata\"}},{\"name\":\"names\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"List<Name>\"}},{\"name\":\"locations\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"ProfileLocations\"}},{\"name\":\"educations\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"List<CandidateEducation>\"}},{\"name\":\"employments\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"List<CandidateEmployment>\"}},{\"name\":\"industries\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"Set<String>\"}},{\"name\":\"onetcodes\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"SortedSet<ONetCode>\"}},{\"name\":\"skills\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"MergeHashSet<CandidateSkill,SkillAggregation>\"}},{\"name\":\"phones\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"Set<String>\"}},{\"name\":\"spoken_languages\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"Set<SpokenLanguage>\"}},{\"name\":\"photos\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"Set<String>\"}},{\"name\":\"about\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"Set<String>\"}},{\"name\":\"websites\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"Set<String>\"}},{\"name\":\"awards\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"List<CandidateAward>\"}},{\"name\":\"certifications\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"List<CandidateCertification>\"}},{\"name\":\"memberships\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"List<CandidateMembership>\"}},{\"name\":\"publications\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"List<CandidatePublication>\"}},{\"name\":\"custom_properties\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"CustomProperties\"}},{\"name\":\"source\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"CandidateSource that is NOT CandidateSource.INTERNAL\"}},{\"name\":\"provider\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"CandidateProvider\"}},{\"name\":\"version\",\"type\":\"string\",\"nullable\":true,\"metadata\":{\"comment\":\"The soure-modified timestamp\"}}]}', 
+  'spark.sql.sources.schema.partCol.0'='source', 
+  'spark.sql.sources.schema.partCol.1'='provider', 
+  'spark.sql.sources.schema.partCol.2'='version', 
+  'transient_lastDdlTime'='1636431733')
