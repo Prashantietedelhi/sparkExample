@@ -1,6 +1,12 @@
+
+
 https://dzone.com/articles/detailed-guide-setup-apache-spark-development-envi
 
 https://kontext.tech/column/hadoop/291/apache-hive-300-installation-on-windows-10-step-by-step-guide
 
 
 https://www.oreilly.com/library/view/apache-spark-quick/9781789349108/7605929c-fd90-4456-abb9-6261a7996a3b.xhtml
+
+
+pyspark2 --deploy-mode client
+
