@@ -10,3 +10,17 @@ https://www.oreilly.com/library/view/apache-spark-quick/9781789349108/7605929c-f
 
 pyspark2 --deploy-mode client
 
+
+
+auxService:mapreduce_shuffle does not exist on hive
+
+<configuration>
+  <property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>
+    <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+  </property>
+</configuration>
