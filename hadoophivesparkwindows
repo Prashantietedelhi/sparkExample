@@ -24,3 +24,8 @@ auxService:mapreduce_shuffle does not exist on hive
     <value>org.apache.hadoop.mapred.ShuffleHandler</value>
   </property>
 </configuration>
+
+
+
+
+https://developers.facebook.com/docs/whatsapp/guides/network-requirements/
