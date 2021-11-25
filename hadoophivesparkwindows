@@ -34,3 +34,6 @@ https://developers.facebook.com/docs/whatsapp/guides/network-requirements/
 
 d = spark.sql("select distinct served_msisdn, ipv4,  ipv6,  session_time from pgwformatted").collect()
 df_dict = [{",".join([r['served_msisdn'],r['ipv6'],r['session_time']]): r['ipv4']} for r in d]
+
+
+https://gethue.com/how-to-configure-hue-in-your-hadoop-cluster/
